@@ -16,9 +16,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Login</a></li>
-                <li><a href="">Register</a></li>
+                <li><a href="{{route('index.main')}}">Home</a></li>
+                <li><a href="{{route('auth.login')}}">Login</a></li>
+                <li><a href="{{route('auth.register')}}">Register</a></li>
             </ul>
         </nav>
     </header>
