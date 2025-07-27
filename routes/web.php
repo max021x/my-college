@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str ; 
 
 Route::redirect('/', '/home');
 Route::view('/home', 'index.main')->name('index.main');
@@ -14,6 +15,10 @@ Route::middleware('auth')->group(function () {
     // dashboard 
     Route::get('/dashboard' , [DashboardController::class , 'index'])->name('user.dashboard') ; 
     
+    Route::post('/dashboard' , function  () {
+        return Str::of(request('markdown'))->markdown() ; 
+    }); 
+
     // logout 
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 });
