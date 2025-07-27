@@ -16,6 +16,11 @@
                 <input type="checkbox" name="remember">
                 <span>Remember Me</span>
             </div>
+            
+            @error('message')
+                {{ $message }}
+            @enderror
+
             <button type="submit">Submit</button>
         </form>
     </section>
