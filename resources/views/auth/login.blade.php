@@ -5,7 +5,7 @@
             @csrf
             <div>
                 <label for="email">Eamil</label>
-                <input type="email" name="email">
+                <input type="email" name="email" value="{{old('email')}}">
             </div>
 
             <div>
