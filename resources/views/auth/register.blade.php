@@ -6,7 +6,7 @@
             
             <div class="mb-4 @error('name') error @enderror">
                 <label for="name">User Name</label>
-                <input type="text" name="name">
+                <input type="text" name="name" value="{{old('name')}}">
                 @error('name')
                     {{ $message }}
                 @enderror
@@ -14,7 +14,7 @@
 
             <div class="mb-4 @error('email') error @enderror">
                 <label for="email">Eamil</label>
-                <input type="email" name="email">
+                <input type="email" name="email" value="{{old('email')}}">
                 @error('email')
                     {{ $message }}
                 @enderror
@@ -22,7 +22,7 @@
             
             <div class="mb-4 @error('password') error @enderror"> 
                 <label for="password">Password</label>
-                <input type="password" name="password">
+                <input type="password" name="password" value="{{old('password')}}">
                 @error('password')
                     {{ $message }}
                 @enderror
@@ -30,13 +30,13 @@
             
             <div class="mb-4 @error('password') error @enderror">
                 <label for="password_confirmation">Confirm Password</label>
-                <input type="password" name="password_confirmation">
+                <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}">
             </div>
             
             {{-- needed to ber persian calleder --}}
             <div class="mb-4 @error('date') error @enderror">
                 <label for="birthdate">Birth Date</label>
-                <input required type="date" name="birthdate">
+                <input required type="date" name="birthdate" value="{{old('date')}}>
                 @error('date')
                     {{ $message }}
                 @enderror

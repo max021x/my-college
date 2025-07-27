@@ -1,7 +1,7 @@
 <x-layout>
     <section>
         <h1>Welcome Back Soldier</h1>
-        <form action="" method="post">
+        <form action="{{route('auth.login')}}" method="post">
             @csrf
             <div>
                 <label for="email">Eamil</label>
