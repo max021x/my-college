@@ -1,7 +1,7 @@
 @props(['post', 'full' => false])
 
 <section class="card"
-    style="padding:@if ($full) 50px @else 10px @endif; border:1px solid black ; line-height:20px ">
+    style="padding:@if ($full) 50px @else 10px @endif; border:1px solid black ; line-height:20px ; background:#e0e0e0 ; ">
 
     <div>
         <p>Title : {{ $post->title }}</p>
@@ -16,35 +16,20 @@
         @else
             <p style="line-height: 30px;">Description : <br>{{ $post->description }}</p>
 
-            <p id="markdown" style="line-height: 30px;">
-                Markdown: <br> {{ $post->markdown}}
-            </p>
+            <div id="markdown" style="line-height: 30px;">
+                Markdown: 
+                ============================================================
+                {!! $post->markdown !!} 
+            </div>
         @endif
 
 
         <p>Createdat: {{ $post->created_at->diffForHumans() }}</p>
 
+        <div >
+            {{$slot}}
+        </div>
+
     </div>
 </section>
 <br>
-
-@if ($full)
-    @section('script')
-        <script>
-            let markdownTextarea = () => document.querySelector('#markdown');
-
-            let convert = () => {
-                let markdown = markdownTextarea().value;
-
-                axios.post('{{ route('posts.show' , $post) }}', {
-                        markdown
-                    })
-                    .then(response => {
-                        document.querySelector('#markdown').innerHTML = response.data;
-                    });
-            };
-
-            convert() ;
-        </script>
-    @endsection
-@endif

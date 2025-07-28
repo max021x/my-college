@@ -17,10 +17,10 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ route('posts.index') }}">Home</a></li>
-
+                <li><a href="{{ route('home.index') }}">Home</a></li>
                 @auth
-                    <li>
+                <li><a href="{{route('posts.index')}}">Latest</a></li>
+                <li>
                         <a href="{{ route('user.dashboard') }}">Dashboard</a>
                     </li>
                     <li>
@@ -59,7 +59,10 @@
         </nav>
     </footer>
 
+    {{-- page reload --}}
+    {{-- eve.preventDefault();  --}}
     @yield('script')
+
 </body>
 
 </html>

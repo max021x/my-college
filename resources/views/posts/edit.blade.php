@@ -1,17 +1,17 @@
 <x-layout>
     <section>
 
-        @if (session('success'))
-            <p style="background: green ; color:#fff;">Yes your post was Created .</p>
+        @if (session('updated'))
+            <p style="background: green ; color:#fff;">{{session('updated')}}</p>
         @endif
 
-        <form id="postform" action="{{ route('posts.store') }}" method="post">
+        <form id="postform" action="{{ route('posts.update' , $post) }}" method="post">
             {{-- <form action="" enctype="multipart/form-data"> --}}
             @csrf
-
+            @method('PUT')
             <div>
                 <label for="title">Title</label>
-                <input type="text" name="title" value="{{ old('title') }}">
+                <input type="text" name="title" value="{{ old('title', $post->title) }}">
             </div>
 
             <div class="error">
@@ -22,13 +22,20 @@
 
             <div>
                 <label for="category">Category</label>
-                <select name="category" id="">
-                    <option value="computer">Computer Engineering : defualt</option>
-                    <option value="game">Game</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="movie">Movie</option>
+                <select name="category" id="category">
+                    <option value="computer" {{ old('category', $post->category) == 'computer' ? 'selected' : '' }}>
+                        Computer Engineering : default
+                    </option>
+                    <option value="game" {{ old('category', $post->category) == 'game' ? 'selected' : '' }}>
+                        Game
+                    </option>
+                    <option value="cooking" {{ old('category', $post->category) == 'cooking' ? 'selected' : '' }}>
+                        Cooking
+                    </option>
+                    <option value="movie" {{ old('category', $post->category) == 'movie' ? 'selected' : '' }}>
+                        Movie
+                    </option>
                 </select>
-
             </div>
 
             <div>
@@ -39,7 +46,7 @@
 
             <div>
                 <label for="description">Descrption</label>
-                <textarea name="description">{{ old('description') }}</textarea>
+                <textarea name="description">{{ old('description', $post->description) }}</textarea>
 
             </div>
 
@@ -51,8 +58,8 @@
 
             <div>
                 <label for="markdown">MarkDown</label>
-                <textarea id="markdown" name="markdown" cols="95" rows="20">
-                    {{ old('markdown') }}
+                <textarea name="markdown" id="markdown">
+                    {{ $post->markdown }}
                 </textarea>
             </div>
 
@@ -63,7 +70,7 @@
                 @enderror
             </div>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit">Update</button>
         </form>
 
 
@@ -73,12 +80,17 @@
 
         @section('script')
             <script>
-                
+                let initialMarkdown = `{{ $post->markdown }}`;
+
+                if (initialMarkdown.trim() !== "") {
+                    localStorage.setItem('markdown', initialMarkdown);
+                }
+
+
                 let markdownTextarea = () => document.querySelector('#markdown');
 
                 document.getElementById('postform').addEventListener('submit', function(event) {
-                    event.preventDefault(); 
-                    localStorage.removeItem('markdown'); 
+                    localStorage.removeItem('markdown');
                 });
 
                 let convert = () => {
@@ -90,14 +102,10 @@
                         .then(response => {
                             document.querySelector('#body').innerHTML = response.data;
                         });
-
-                    localStorage.setItem('markdown', markdown);
-
                 };
 
                 let init = () => {
                     markdownTextarea().value = localStorage.getItem('markdown');
-
                     setInterval(convert, 1000);
                 }
 

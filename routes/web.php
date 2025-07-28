@@ -7,8 +7,8 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-Route::redirect('/', '/posts');
-Route::get('/posts ', [PostController::class, 'index'])->name('posts.index');
+Route::redirect('/', '/home');
+Route::view('/home' , 'posts.index')->name('home.index') ;
 
 
 

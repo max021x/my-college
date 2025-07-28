@@ -6,16 +6,18 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth ;   
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $posts = Post::latest()->paginate(6) ; 
-        return view('posts.index' , ['posts' => $posts]) ; 
+    {
+        $posts = Post::latest()->paginate(6);
+        return view('posts.viewPosts', ['posts' => $posts]);
     }
 
     /**
@@ -47,8 +49,9 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(Post $post)
-    {  
-        return view('posts.show' , ['post' => $post]) ; 
+    {
+        $post->markdown = Str::markdown($post->markdown);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -56,15 +59,24 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //
+        $fields = $request->validate([
+            'title' => ['required', 'max:255'],
+            'category' => ['required'],
+            'description' => ['required'],
+            'markdown' => ['required'],
+        ]);
+
+        $post->update($fields) ; 
+
+        return back()->with('updated', 'Your post was Updated');
     }
 
     /**
