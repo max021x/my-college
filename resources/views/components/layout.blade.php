@@ -17,11 +17,14 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ route('index.main') }}">Home</a></li>
+                <li><a href="{{ route('posts.index') }}">Home</a></li>
 
                 @auth
                     <li>
                         <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('posts.create') }}">Create Post</a>
                     </li>
                     <li>
                         <form action="{{ route('auth.logout') }}" method="POST">
