@@ -28,7 +28,7 @@
     <h1 id="posts">Lates Posts</h1>
     @foreach ( $posts as $post )
             <x-postCard :post="$post">
-                <a style="background-color: #00ff00 ; padding:10px; color:#fff;" href="">Update</a>
+                <a style="background-color: #00ff00 ; padding:10px; color:#fff;" href="{{route('posts.edit' , $post)}}">Update</a>
                 <form style="display: inline-block;" action="" method="post">
                     @csrf
                     @method('DELETE')
