@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 Route::redirect('/', '/home');
-Route::view('/home' , 'posts.index')->name('home.index') ;
+Route::view('/home', 'posts.index')->name('home.index');
 
 
 
@@ -16,12 +16,17 @@ Route::middleware('auth')->group(function () {
     // dashboard 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
 
-    Route::post('/dashboard', function () {
+    // post : store , update , delete , show  
+    Route::resource('/posts', PostController::class);
+
+    Route::post('/posts/create', function () {
         return Str::of(request('markdown'))->markdown();
     });
 
-    // post : store , update , delete , show  
-    Route::resource('/posts', PostController::class);
+    Route::post('/posts/{post}/edit', function () {
+        return Str::of(request('markdown'))->markdown();
+    });
+
 
     // logout 
     Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');

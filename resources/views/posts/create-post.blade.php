@@ -5,10 +5,9 @@
             <p style="background: green ; color:#fff;">Yes your post was Created .</p>
         @endif
 
-        <form id="postform" action="{{ route('posts.store') }}" method="post">
-            {{-- <form action="" enctype="multipart/form-data"> --}}
-                @csrf
-                
+        <form id="postform" action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
+            @csrf
+
             <div>
                 <label for="title">Title</label>
                 <input type="text" name="title" value="{{ old('title') }}">
@@ -61,15 +60,14 @@
                     <br>
                     {{ $message }}
                 @enderror
-            </div>
-            <br>
+            </div>  
             <button type="submit">Submit</button>
-            <div style="border: solid 1px black ; padding:30px">
-                <div id="body"></div>
-            </div>
         </form>
 
 
+        <div style="border: solid 1px black ; padding:30px">
+            <div id="body"></div>
+        </div>
 
         @section('script')
             <script>
@@ -100,7 +98,7 @@
                     setInterval(convert, 2000);
                 }
 
-                init();
+                // init();
             </script>
         @endsection
 

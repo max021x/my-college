@@ -29,7 +29,7 @@
     @foreach ( $posts as $post )
             <x-postCard :post="$post">
                 <a style="background-color: #00ff00 ; padding:10px; color:#fff;" href="{{route('posts.edit' , $post)}}">Update</a>
-                <form style="display: inline-block;" action="" method="post">
+                <form style="display: inline-block;" action="{{route('posts.destroy' , $post)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button style="background-color: #ff0000; color:#fff;">Delete</button>

@@ -96,7 +96,7 @@
                 let convert = () => {
                     let markdown = markdownTextarea().value;
 
-                    axios.post('{{ route('user.dashboard') }}', {
+                    axios.post('{{ route('posts.edit' , $post) }}', {
                             markdown
                         })
                         .then(response => {

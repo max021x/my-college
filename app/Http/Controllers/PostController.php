@@ -58,7 +58,7 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
-    {
+    {   
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -74,7 +74,7 @@ class PostController extends Controller
             'markdown' => ['required'],
         ]);
 
-        $post->update($fields) ; 
+        $post->update($fields);
 
         return back()->with('updated', 'Your post was Updated');
     }
@@ -84,6 +84,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back()->with('delete', ' Your post was deleted !');
     }
 }
