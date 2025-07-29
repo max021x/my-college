@@ -1,12 +1,8 @@
 <x-layout>
     <section>
 
-        @if (session('updated'))
-            <p style="background: green ; color:#fff;">{{ session('updated') }}</p>
-        @endif
 
-        <form id="postform" action="{{ route('posts.update', $post) }}" method="post">
-            {{-- <form action="" enctype="multipart/form-data"> --}}
+        <form id="postform" action="{{ route('posts.update', $post) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div>
@@ -72,7 +68,15 @@
                     {{ $message }}
                 @enderror
             </div>
-            <br>
+
+            <div>
+                <label for="cover">Insert Image [optional] </label>
+                <input type="file" name="cover">
+            </div>
+            @error('cover')
+                <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
+            @enderror
+
             <button type="submit">Update</button>
         </form>
 

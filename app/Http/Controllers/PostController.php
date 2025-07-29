@@ -34,28 +34,28 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
 
         $request->validate([
             'title' => ['required', 'max:255'],
             'category' => ['required'],
             'description' => ['required'],
             'markdown' => ['required'],
-            'cover' => ['nullable' , 'file' , 'mimes:png,jpg,webp' , 'max:1024']
+            'cover' => ['nullable', 'file', 'mimes:png,jpg,webp', 'max:1024']
         ]);
 
         // return the path 
-        
-        $path = null ; 
-        if($request->hasFile('cover')){
-            $path = Storage::disk('public' , $request->cover)->put('blog-images' , $request->cover) ; 
+
+        $path = null;
+        if ($request->hasFile('cover')) {
+            $path = Storage::disk('public', $request->cover)->put('blog-images', $request->cover);
         }
         Auth::user()->posts()->create(
             [
-                'title' => $request->title ,
-                'category' => $request->category ,
-                'description' => $request->description ,
-                'markdown' => $request->markdown , 
+                'title' => $request->title,
+                'category' => $request->category,
+                'description' => $request->description,
+                'markdown' => $request->markdown,
                 'cover' => $path
             ]
         );
@@ -67,21 +67,22 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(Post $post)
-    {   
+    {
         $post->markdown = Str::markdown($post->markdown);
         return view('posts.show', ['post' => $post]);
     }
 
-    public function category (string $category) {
-        $posts = Post::where('category' , $category)->latest()->paginate(6);
-        return view('posts.viewPosts', ['posts' => $posts]);    
+    public function category(string $category)
+    {
+        $posts = Post::where('category', $category)->latest()->paginate(6);
+        return view('posts.viewPosts', ['posts' => $posts]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
-    {   
+    {
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -90,16 +91,33 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $fields = $request->validate([
+        $request->validate([
             'title' => ['required', 'max:255'],
             'category' => ['required'],
             'description' => ['required'],
             'markdown' => ['required'],
+            'cover' => ['nullable', 'file', 'mimes:png,jpg,webp', 'max:1024']
         ]);
 
-        $post->update($fields);
+        $path = $post->cover ?? null;
+        if ($request->hasFile('cover')) {
+            // chech the old images exist and delete it 
+            if ($post->cover) {
+                Storage::disk('public')->delete($post->cover);
+            }
+            // write a new image 
+            $path = Storage::disk('public')->put('blog-images', $request->cover);
+        }
 
-        return back()->with('updated', 'Your post was Updated');
+        $post->update([
+            'title' => $request->title,
+            'category' => $request->category,
+            'description' => $request->description,
+            'markdown' => $request->markdown,
+            'cover' => $path
+        ]);
+
+        return redirect()->route('user.dashboard')->with('updated', 'Your post is Updated');
     }
 
     /**

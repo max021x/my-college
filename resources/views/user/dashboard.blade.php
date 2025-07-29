@@ -1,5 +1,7 @@
 <x-layout>
-
+    @if (session('updated'))
+        <p style="background: green ; color:#fff;">{{ session('updated') }}</p>
+    @endif
 
     <a href="#posts">Rich To Your Posts</a>
 
@@ -26,20 +28,21 @@
     </form>
 
     <h1 id="posts">Lates Posts</h1>
-    @foreach ( $posts as $post )
-            <x-postCard :post="$post">
-                <a style="background-color: #00ff00 ; padding:10px; color:#fff;" href="{{route('posts.edit' , $post)}}">Update</a>
-                <form style="display: inline-block;" action="{{route('posts.destroy' , $post)}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button style="background-color: #ff0000; color:#fff;">Delete</button>
-                </form>
-            </x-postCard>  
+    @foreach ($posts as $post)
+        <x-postCard :post="$post">
+            <a style="background-color: #00ff00 ; padding:10px; color:#fff;"
+                href="{{ route('posts.edit', $post) }}">Update</a>
+            <form style="display: inline-block;" action="{{ route('posts.destroy', $post) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button style="background-color: #ff0000; color:#fff;">Delete</button>
+            </form>
+        </x-postCard>
     @endforeach
 
 
     <div>
-        {{$posts->links('pagination::bootstrap-5')}}
+        {{ $posts->links('pagination::bootstrap-5') }}
     </div>
 
 </x-layout>

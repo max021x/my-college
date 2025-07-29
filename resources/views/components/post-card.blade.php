@@ -7,18 +7,19 @@
         {{-- image cover --}}
         <div>
             @if ($post->cover)
-                <img src="{{asset('storage/' . $post->cover)}}" 
-                width="@if($full) 100% ; @else 30% ;@endif" 
-                alt="">
+                <img src="{{ asset('storage/' . $post->cover) }}"
+                    width="@if ($full) 100% ; @else 30% ; @endif" alt="">
+            @else
+                <img src="{{ asset('storage/blog-images/defualt.webp') }}"
+                    width="@if ($full) 100% ; @else 200px ; @endif" alt="">
             @endif
-        
         </div>
 
 
         <p>Title : {{ $post->title }}</p>
-        
+
         <p>Category : {{ $post->category }}</p>
-        
+
         <a href="">
             <p>Author : {{ $post->user->name }}</p>
         </a>
@@ -30,17 +31,17 @@
             <p style="line-height: 30px;">Description : <br>{{ $post->description }}</p>
 
             <div id="markdown" style="line-height: 30px;">
-                Markdown: 
+                Markdown:
                 ============================================================
-                {!! $post->markdown !!} 
+                {!! $post->markdown !!}
             </div>
         @endif
 
 
         <p>Createdat: {{ $post->created_at->diffForHumans() }}</p>
 
-        <div >
-            {{$slot}}
+        <div>
+            {{ $slot }}
         </div>
 
     </div>
