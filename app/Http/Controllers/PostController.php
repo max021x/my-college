@@ -125,6 +125,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->cover) {
+            Storage::disk('public')->delete($post->cover);
+        }
         $post->delete();
         return back()->with('delete', ' Your post was deleted !');
     }
