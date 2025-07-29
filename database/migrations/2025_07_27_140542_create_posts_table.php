@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category')->default('computer') ; 
             $table->text('description') ;
             $table->mediumText('markdown') ; 
+            $table->string('cover')->nullable() ; 
             $table->timestamps();
         });
     }

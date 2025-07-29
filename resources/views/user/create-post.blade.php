@@ -1,14 +1,16 @@
 <x-layout>
     <section>
 
+        {{-- session success --}}
         @if (session('success'))
             <p style="background: green ; color:#fff;">Yes your post was Created .</p>
         @endif
 
-        <form id="postform" action="{{ route('posts.store') }}" method="post">
-            {{-- <form action="" enctype="multipart/form-data"> --}}
-                @csrf
-                
+        {{-- create form --}}
+        <form id="postform" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            {{-- title input --}}
             <div>
                 <label for="title">Title</label>
                 <input type="text" name="title" value="{{ old('title') }}">
@@ -16,10 +18,11 @@
 
             <div class="error">
                 @error('title')
-                    {{ $message }}
+                    <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>
 
+            {{-- category input --}}
             <div>
                 <label for="category">Category</label>
                 <select name="category" id="">
@@ -34,22 +37,22 @@
 
             <div>
                 @error('category')
-                    {{ $message }}
+                    <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>
 
+            {{-- description input --}}
             <div>
                 <label for="description">Descrption</label>
                 <textarea name="description">{{ old('description') }}</textarea>
-
             </div>
 
             <div>
                 @error('description')
-                    {{ $message }}
+                    <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>
-
+            {{-- markdown input --}}
             <div>
                 <label for="markdown">MarkDown</label>
                 <textarea id="markdown" name="markdown" cols="95" rows="20">
@@ -59,12 +62,23 @@
 
             <div>
                 @error('markdown')
-                    <br>
-                    {{ $message }}
+                    <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>
-            <br>
-            <button type="submit">Submit</button>
+
+            {{-- image cover --}}
+            <div>
+                <label for="cover">Insert Image [optional] </label>
+                <input type="file" name="cover">
+            </div>
+            @error('cover')
+                <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
+            @enderror
+
+
+            <button style="background: #00ff; color:#fff;" type="submit">Submit</button>
+
+            {{-- markdown result  --}}
             <div style="border: solid 1px black ; padding:30px">
                 <div id="body"></div>
             </div>
@@ -74,11 +88,10 @@
 
         @section('script')
             <script>
-                
                 let markdownTextarea = () => document.querySelector('#markdown');
 
                 document.getElementById('postform').addEventListener('submit', function(event) {
-                    localStorage.removeItem('markdown'); 
+                    localStorage.removeItem('markdown');
                 });
 
                 let convert = () => {

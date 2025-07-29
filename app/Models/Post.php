@@ -17,7 +17,8 @@ class Post extends Model
         'title' , 
         'category' , 
         'description' , 
-        'markdown' 
+        'markdown' , 
+    'cover'
     ] ; 
 
 
