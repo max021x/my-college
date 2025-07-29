@@ -2,10 +2,10 @@
     <section>
 
         @if (session('updated'))
-            <p style="background: green ; color:#fff;">{{session('updated')}}</p>
+            <p style="background: green ; color:#fff;">{{ session('updated') }}</p>
         @endif
 
-        <form id="postform" action="{{ route('posts.update' , $post) }}" method="post">
+        <form id="postform" action="{{ route('posts.update', $post) }}" method="post">
             {{-- <form action="" enctype="multipart/form-data"> --}}
             @csrf
             @method('PUT')
@@ -34,6 +34,9 @@
                     </option>
                     <option value="movie" {{ old('category', $post->category) == 'movie' ? 'selected' : '' }}>
                         Movie
+                    </option>
+                    <option value="fun" {{ old('category', $post->category) == 'fun' ? 'selected' : '' }}>
+                        Fun 😂
                     </option>
                 </select>
             </div>
@@ -96,7 +99,7 @@
                 let convert = () => {
                     let markdown = markdownTextarea().value;
 
-                    axios.post('{{ route('posts.edit' , $post) }}', {
+                    axios.post('{{ route('posts.edit', $post) }}', {
                             markdown
                         })
                         .then(response => {

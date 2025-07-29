@@ -27,6 +27,7 @@
                     <option value="game">Game</option>
                     <option value="cooking">Cooking</option>
                     <option value="movie">Movie</option>
+                    <option value="fun">Fun 😂</option>
                 </select>
 
             </div>
