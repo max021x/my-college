@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 Route::redirect('/', '/home');
-Route::view('/home', 'posts.index')->name('home.index');
+Route::view('/home', 'user.index')->name('home.index');
 
 
 
@@ -22,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/create', function () {
         return Str::of(request('markdown'))->markdown();
     });
+
+    Route::get('/posts/category/{category}' ,[PostController::class , 'category'])
+    ->name('posts.category')
+    ->whereIn('category' , ['computer' , 'movie' , 'game' , 'cooking' , 'fun']) ;
 
     Route::post('/posts/{post}/edit', function () {
         return Str::of(request('markdown'))->markdown();

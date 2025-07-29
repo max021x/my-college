@@ -54,6 +54,11 @@ class PostController extends Controller
         return view('posts.show', ['post' => $post]);
     }
 
+    public function category (string $category) {
+        $posts = Post::where('category' , $category)->latest()->paginate(6);
+        return view('posts.viewPosts', ['posts' => $posts]);    
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
