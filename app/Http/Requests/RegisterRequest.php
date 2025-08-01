@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'email' => ['required', /*'email:rfc,dns,spoof,filter', 'max:255', 'unique:users'*/],
             'password' => ['required' , 'confirmed' , /*Password::default()*/],
             'birthdate' => ['required' , 'date'],
-            'profile' => ['nullable', 'file', 'max:1024', 'mimes:png,jpg']
+            'avatar' => ['nullable', 'file', 'max:1024', 'mimes:png,jpg']
         ];
     }
 }

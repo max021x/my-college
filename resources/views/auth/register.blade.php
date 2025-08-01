@@ -36,16 +36,16 @@
             {{-- needed to ber persian calleder --}}
             <div class="mb-4 @error('date') error @enderror">
                 <label for="birthdate">Birth Date</label>
-                <input required type="date" name="birthdate" value="{{old('date')}}">
+                <input required type="date" name="birthdate" value="{{old('birthdate')}}">
                 @error('date')
                 <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>
             
-            <div class="mb-4 @error('profile') error @enderror">
-                <label for="profile">Profile (this field is optional)</label>
-                <input type="file" name="profile">
-                @error('profile')
+            <div class="mb-4 @error('avatar') error @enderror">
+                <label for="avatar">Profile (this field is optional)</label>
+                <input type="file" name="avatar">
+                @error('avatar')
                 <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
                 @enderror
             </div>

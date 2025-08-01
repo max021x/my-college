@@ -9,8 +9,9 @@ use App\Models\Post ;
 class DashboardController extends Controller
 {
     public function index () {
-        $posts = Auth::user()->posts()->latest()->paginate(6) ; 
-        return view('user.dashboard' , ['posts' => $posts]) ; 
+        $posts  = Auth::user()->posts()->latest()->paginate(6) ; 
+        $avatar = Auth::user()->avatar ; 
+        return view('user.dashboard' , ['posts' => $posts , 'avatar' => $avatar]) ; 
     }
 
     

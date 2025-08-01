@@ -60,7 +60,7 @@ class PostController extends Controller
             ]
         );
 
-        return back()->with('success', 'Your post was Created');
+        return redirect()->route('user.dashboard')->with('success', 'Your post is Created');
     }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
             'cover' => $path
         ]);
 
-        return redirect()->route('user.dashboard')->with('updated', 'Your post is Updated');
+        return redirect()->route('user.dashboard')->with('success', 'Your post is Updated');
     }
 
     /**
@@ -129,6 +129,6 @@ class PostController extends Controller
             Storage::disk('public')->delete($post->cover);
         }
         $post->delete();
-        return back()->with('delete', ' Your post was deleted !');
+        return back()->with('delete', ' Your post is deleted !');
     }
 }
