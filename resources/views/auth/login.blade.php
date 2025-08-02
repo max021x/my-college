@@ -18,7 +18,7 @@
             </div>
             
             @error('message')
-                <p style="background: #f00 ; color:#fff ; ">{{ $message }}</p>
+                <p class="error">{{ $message }}</p>
             @enderror
 
             <button type="submit">Submit</button>

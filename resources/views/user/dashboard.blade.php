@@ -62,7 +62,9 @@
     </form>
     {{-- delete account --}}
     <br>
-    <form action="">
+    <form action="{{route('auth.delete')}}" method="POST">
+        @csrf
+        @method('DELETE')
         <button style="background-color: #ff0000; color:#fff;">DELETE ACCOUNT</button>
     </form>
 

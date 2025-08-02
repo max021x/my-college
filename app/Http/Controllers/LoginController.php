@@ -15,14 +15,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $remember = $request->has('remember') ; 
-        
+        $remember = $request->has('remember');
+
         $fields = $request->validate([
             'email' => ['required', 'max:255', 'email'],
             'password' => ['required']
         ]);
-    
-        if (Auth::attempt($fields , $remember)) {
+
+        if (Auth::attempt($fields, $remember)) {
             $request->session()->regenerate();
             return redirect()->route('user.dashboard');
         }
@@ -34,8 +34,15 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home.index');
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $request->user()->delete();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('home.index');

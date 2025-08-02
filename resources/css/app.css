@@ -1,3 +1,4 @@
+
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,10 +11,6 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-
-.error{ 
-    color: #ff0000;
-}
 
 
 
