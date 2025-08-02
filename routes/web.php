@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str; 
 
@@ -68,4 +69,18 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/login', [LoginController::class, 'login'])
         ->name('auth.login');
+
+    // reset password 
+
+    // reset view 
+    Route::get('/forgot-password'  , [ResetPasswordController::class , 'ResetView'])->name('password.request') ;
+    // reset email 
+    Route::post('/forgot-password' , [ResetPasswordController::class , 
+    'ResetEmail'])->name('password.email'); ; 
+    // reset password view
+    Route::get('/reset-password/{token}' , [ResetPasswordController::class ,
+    'ResetPassword'])->name('password.reset'); ; 
+    // update password 
+    Route::post('/reset-password', [ResetPasswordController::class, 'ResetUpdate'])->name('password.update');
+
 });
