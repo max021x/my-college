@@ -27,7 +27,9 @@
                     <img src="{{ asset('storage/my-college/main/logos/laravel-logo.png') }}" alt="">
                 </div>
                 <h3>Laravel</h3>
-                <p>Every new nerd programmer hates PHP for no reason. I always wondered why PHP has lots of haters, then I found it's because of its powerful features such as Blade templating and Artisan which I love 💗 to work with, even when I want to make a simple view.</p>
+                <p>Every new nerd programmer hates PHP for no reason. I always wondered why PHP has lots of haters, then
+                    I found it's because of its powerful features such as Blade templating and Artisan which I love 💗
+                    to work with, even when I want to make a simple view.</p>
             </div>
 
             <div class="col">
@@ -36,7 +38,8 @@
                 </div>
                 <h3>MySQL</h3>
                 <p>
-                    Well, I'm still new to MySQL. I used MariaDB driver which is faster. MySQL string functions were the part I liked so much,
+                    Well, I'm still new to MySQL. I used MariaDB driver which is faster. MySQL string functions were the
+                    part I liked so much,
                     and I offer you to look at this database - it's so catchy.
                 </p>
             </div>
@@ -49,10 +52,18 @@
                 <h3>Laragon</h3>
                 <p>
                     Leo Khoa (Laragon Creator) is a smart guy,
-                    but I wish his team made Laragon for Linux distros too. Laragon is a web tool package that has everything a web developer needs for developing like Apache, Nginx, PHP, MySQL, Node.js, Python, even a mailer AKA Mailpit. In Mailpit I could send emails to my local machine to test emails.
+                    but I wish his team made Laragon for Linux distros too. Laragon is a web tool package that has
+                    everything a web developer needs for developing like Apache, Nginx, PHP, MySQL, Node.js, Python,
+                    even a mailer AKA Mailpit. In Mailpit I could send emails to my local machine to test emails.
                 </p>
             </div>
         </div>
     </section>
 
+
+    @section('footer')
+        <x-footer></x-footer>
+    @endsection
+
 </x-layout>
+
