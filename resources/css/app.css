@@ -129,7 +129,7 @@ body {
 
 .tools {
     width: 80%;
-    padding: 100px 0;
+    padding: 10px 0;
     text-align: center;
     margin: auto;
 }
@@ -200,8 +200,15 @@ footer {
 }
 
 
+.gisgus {
+    width: 80%;
+    margin: auto;
+    padding: 10px 0px 200px 0px ; 
+}
 
-
+.gisgus h1 {
+    font-size: 3rem;
+}
 
 /* responsive */
 

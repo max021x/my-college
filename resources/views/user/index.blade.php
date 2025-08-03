@@ -62,21 +62,24 @@
 
     {{-- gis guss --}}
     @section('script')
-    <script src="https://github.com/max021x/my-college.git"
-        data-repo="[ENTER REPO HERE]"
-        data-repo-id="[ENTER REPO ID HERE]"
-        data-category="[ENTER CATEGORY NAME HERE]"
-        data-category-id="[ENTER CATEGORY ID HERE]"
+    <div class="gisgus">
+    <h1>Please give me feedBack</h1>
+<script src="https://giscus.app/client.js"
+        data-repo="max021x/my-college"
+        data-repo-id="R_kgDOPTPIlg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOPTPIls4CtvCQ"
         data-mapping="pathname"
         data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
+        data-reactions-enabled="0"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="catppuccin_latte"
         data-lang="en"
         crossorigin="anonymous"
         async>
-    </script>
+</script>
+    </div>
 @endsection
 
 
