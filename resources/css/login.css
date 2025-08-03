@@ -1,0 +1,102 @@
+
+/* login stlye  */
+
+.container {
+    /* margin: 10px 0; */
+}
+
+.form__container {
+    position: absolute;
+    padding: 10px 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    box-sizing: border-box;
+}
+
+.form__container h1 { 
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.form__container form {
+    padding: 20px;
+}
+
+.input label{
+    padding: 10px 0;
+    font-size: 1.2rem;
+    font-weight: 100;
+    display: block;
+}
+
+.input input {
+    border: 1.5px solid var(--dark-blue);
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+
+.input span {
+    text-align: center;
+}
+
+.checkbox  {
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    text-align: justify;
+} 
+
+
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn{
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+}
+
+.error {
+    background: var(--dark-blue);
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+
+@media(max-width:700px) {
+    .form__container {
+            width: 100% ;
+
+        padding: 50px;
+    }
+
+    .input a {
+        font-size: 10px;
+    }
+
+    .form__container h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .input label {
+        font-size: 1rem;
+    }
+
+
+}
+
+
+
+
+
+
