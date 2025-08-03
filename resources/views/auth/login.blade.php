@@ -3,15 +3,19 @@
         <p>{{ session('status') }}</p>
     @endif
 
+
+
     <div class="container">
         <section class="form__container">
             <h1>Welcome Back Soldier</h1>
+            @error('message')
+                <p class="error">{{ $message }}</p>
+            @enderror
             <form action="{{ route('auth.login') }}" method="post">
                 @csrf
                 <div class="input">
                     <label for="email">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}"
-                    >
+                    <input type="email" name="email" value="{{ old('email') }}">
                 </div>
 
                 <div class="input">
@@ -26,10 +30,6 @@
 
                     <a class="text-blue-500" href="{{ route('password.request') }}">Forgot your password?</a>
                 </div>
-
-                @error('message')
-                    <p class="error">{{ $message }}</p>
-                @enderror
 
                 <button
                     class="btn px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80"

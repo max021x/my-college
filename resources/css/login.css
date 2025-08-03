@@ -1,20 +1,23 @@
-
 /* login stlye  */
 
 .container {
     /* margin: 10px 0; */
 }
 
+.register {
+    margin-top: 100px;
+}
+
 .form__container {
     position: absolute;
     padding: 10px 20px;
-    top: 50%;
+    top: 60%;
     left: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
 }
 
-.form__container h1 { 
+.form__container h1 {
     text-align: center;
     font-size: 3.5rem;
 }
@@ -23,9 +26,9 @@
     padding: 20px;
 }
 
-.input label{
-    padding: 10px 0;
-    font-size: 1.2rem;
+.input label {
+    padding: 5px 0;
+    font-size: 1.1rem;
     font-weight: 100;
     display: block;
 }
@@ -42,12 +45,12 @@
     text-align: center;
 }
 
-.checkbox  {
+.checkbox {
     padding: 20px 10px;
     display: flex;
     align-items: center;
     text-align: justify;
-} 
+}
 
 
 
@@ -57,25 +60,21 @@
     align-items: center;
 }
 
-.btn{
+.btn {
     display: block;
     margin: 10px auto;
     width: 100%;
 }
 
 .error {
-    background: var(--dark-blue);
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-    border-radius: 10px;
+    color: red;
+    text-align: left;
 }
 
 
 @media(max-width:700px) {
     .form__container {
-            width: 100% ;
-
+        width: 100%;
         padding: 50px;
     }
 
@@ -94,9 +93,3 @@
 
 
 }
-
-
-
-
-
-
