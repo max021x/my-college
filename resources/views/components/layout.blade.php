@@ -35,12 +35,12 @@
                             <a href="{{ route('user.dashboard') }}">Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ route('posts.create') }}">Create Post</a>
+                            <a href="{{ route('posts.create') }}">Create</a>
                         </li>
                         <li>
                             <form action="{{ route('auth.logout') }}" method="POST">
                                 @csrf
-                                <button>Logout</button>
+                                <button class="text-white cursor-pointer ">Logout</button>
                             </form>
                         </li>
                     @endauth

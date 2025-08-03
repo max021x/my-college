@@ -5,7 +5,9 @@
 
     {{-- user avatar --}}
     <div style="width:40% ; text-align:center ; margin:auto">
-        <img style="" src="{{ asset('storage/' . $avatar) }}" alt="">
+        @if ($avatar)
+            <img style="" src="{{ asset('storage/' . $avatar) }}" alt="">
+        @endif
     </div>
 
 

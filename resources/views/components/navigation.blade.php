@@ -12,7 +12,6 @@
                            <a href="{{ route('user.dashboard') }}">Dashboard</a>
                        </li>
                        <li>
-                           <a href="{{ route('posts.create') }}">Create Post</a>
                        </li>
                        <li>
                            <form action="{{ route('auth.logout') }}" method="POST">

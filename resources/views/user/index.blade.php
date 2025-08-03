@@ -27,7 +27,7 @@
                     <img src="{{ asset('storage/my-college/main/logos/laravel-logo.png') }}" alt="">
                 </div>
                 <h3>Laravel</h3>
-                <p>Every new nerd programmer hates PHP for no reason. I always wondered why PHP has lots of haters, then
+                <p>Every new nerd programmer hates PHP for no rwweason. I always wondered why PHP has lots of haters, then
                     I found it's because of its powerful features such as Blade templating and Artisan which I love 💗
                     to work with, even when I want to make a simple view.</p>
             </div>
