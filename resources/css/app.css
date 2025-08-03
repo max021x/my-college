@@ -129,7 +129,7 @@ body {
 
 .tools {
     width: 80%;
-    padding-top: 100px;
+    padding: 100px 0;
     text-align: center;
     margin: auto;
 }

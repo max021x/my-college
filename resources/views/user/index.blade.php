@@ -60,6 +60,25 @@
         </div>
     </section>
 
+    {{-- gis guss --}}
+    @section('script')
+    <script src="https://github.com/max021x/my-college.git"
+        data-repo="[ENTER REPO HERE]"
+        data-repo-id="[ENTER REPO ID HERE]"
+        data-category="[ENTER CATEGORY NAME HERE]"
+        data-category-id="[ENTER CATEGORY ID HERE]"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+@endsection
+
 
     @section('footer')
         <x-footer></x-footer>
