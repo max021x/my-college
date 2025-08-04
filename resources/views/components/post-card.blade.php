@@ -1,49 +1,50 @@
 @props(['post', 'full' => false])
 
-<section class="card"
-    style="padding:@if ($full) 50px @else 10px @endif; border:1px solid black ; line-height:20px ; background:#e0e0e0 ; ">
+<article class="bg-white rounded-lg shadow-md overflow-hidden">
+    @if ($post->cover)
+        <img src="{{ asset('storage/' . $post->cover) }}" 
+             class="w-full h-64 object-cover"
+             alt="Post cover image">
+    @else
+        <img src="{{ asset('storage/blog-images/default.webp') }}" 
+             class="w-full h-64 object-cover"
+             alt="Default post image">
+    @endif
 
-    <div>
-        {{-- image cover --}}
-        <div>
-            @if ($post->cover)
-                <img src="{{ asset('storage/' . $post->cover) }}"
-                    width="@if ($full) 100% ; @else 30% ; @endif" alt="">
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-[#004677] bg-[#004677]/10 px-3 py-1 rounded-full">
+                {{ $post->category }}
+            </span>
+            <span class="text-sm text-gray-500">
+                {{ $post->created_at->diffForHumans() }}
+            </span>
+        </div>
+
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ $post->title }}</h2>
+        
+        <p class="text-gray-600 mb-4">{{ $post->user->name }}</p>
+
+        <div class="prose max-w-none">
+            @if($full)
+                <p class="text-gray-700 mb-4">{{ $post->description }}</p>
+                <div class="markdown-content">
+                    {!! $post->markdown !!}
+                </div>
             @else
-                <img src="{{ asset('storage/blog-images/defualt.webp') }}"
-                    width="@if ($full) 100% ; @else 200px ; @endif" alt="">
+                <p class="text-gray-700 mb-4 line-clamp-3">{{ $post->description }}</p>
+                <a href="{{ route('posts.show', $post) }}" 
+                   class="text-[#004677] font-medium hover:underline inline-flex items-center">
+                    Read full post
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
             @endif
         </div>
 
-
-        <p>Title : {{ $post->title }}</p>
-
-        <p>Category : {{ $post->category }}</p>
-
-        <a href="">
-            <p>Author : {{ $post->user->name }}</p>
-        </a>
-
-        @if (!$full)
-            <p>Description : <br>{{ Str::words($post->description, 10) }}</p>
-            <a href="{{ route('posts.show', $post) }}">Readmore</a>
-        @else
-            <p style="line-height: 30px;">Description : <br>{{ $post->description }}</p>
-
-            <div id="markdown" style="line-height: 30px;">
-                Markdown:
-                ============================================================
-                {!! $post->markdown !!}
-            </div>
-        @endif
-
-
-        <p>Createdat: {{ $post->created_at->diffForHumans() }}</p>
-
         <div>
-            {{ $slot }}
+            {{$slot}}
         </div>
-
     </div>
-</section>
-<br>
+</article>
