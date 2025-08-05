@@ -22,7 +22,7 @@
                    @endauth
 
                    @guest
-                       <li><a href="{{ route('auth.login') }}">Login</a></li>
+                       <li><a href="{{ route('login') }}">Login</a></li>
                        <li><a href="{{ route('auth.register') }}">Register</a></li>
                    @endguest
                </ul>

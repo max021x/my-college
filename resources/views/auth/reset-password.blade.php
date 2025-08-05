@@ -67,7 +67,7 @@
 
             <div class="text-center text-sm text-gray-600 mt-4">
                 <p>Remembered your password? 
-                    <a href="{{ route('auth.login') }}" class="font-medium text-[#004677] hover:text-[#003355]">
+                    <a href="{{ route('login') }}" class="font-medium text-[#004677] hover:text-[#003355]">
                         Sign in here
                     </a>
                 </p>

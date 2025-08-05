@@ -65,10 +65,10 @@ Route::middleware('guest')->group(function () {
 
     // login user view
     Route::get('/login', [LoginController::class, 'index'])
-        ->name('auth.login');
+        ->name('login');
 
     Route::post('/login', [LoginController::class, 'login'])
-        ->name('auth.login');
+        ->name('login');
 
     // reset password 
 

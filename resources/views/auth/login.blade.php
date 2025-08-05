@@ -11,7 +11,7 @@
             @error('message')
                 <p class="error">{{ $message }}</p>
             @enderror
-            <form action="{{ route('auth.login') }}" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="input">
                     <label for="email">Email</label>
