@@ -5,19 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\Mailer\Transport\Dsn;
 
-class PostController extends Controller
-{
+class PostController extends Controller implements HasMiddleware
+{   
+
+    public static function middleware () {
+
+        return [
+            new Middleware('auth' , except:['index' , 'show']) 
+        ] ; 
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
         $posts = Post::latest()->paginate(6);
         return view('posts.viewPosts', ['posts' => $posts]);
     }
@@ -82,7 +93,8 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
-    {
+    {   
+        Gate::authorize('modify' , $post) ; 
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -90,7 +102,8 @@ class PostController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
-    {
+    {   
+        Gate::authorize('modify' , $post) ; 
         $request->validate([
             'title' => ['required', 'max:255'],
             'category' => ['required'],
@@ -124,7 +137,9 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Post $post)
-    {
+    {   
+        Gate::authorize('modigy' , $post) ; 
+
         if ($post->cover) {
             Storage::disk('public')->delete($post->cover);
         }
