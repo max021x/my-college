@@ -8,7 +8,7 @@
             'button'=> __('commentify::commentify.comments.edit_comment')
         ])
     @else
-        <article class="p-6 mb-1 text-base bg-white rounded-lg dark:bg-gray-900">
+        <article class="p-6 mb-1 text-base bg-white rounded-lg ">
             <footer class="flex justify-between items-center mb-1">
                 <div class="flex items-center">
                     <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
@@ -28,7 +28,7 @@
                         </svg>
                     </button>
                     @if($showOptions)
-                        <div class="absolute z-10 top-full right-0 mt-1 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                        <div class="absolute z-10 top-full right-0 mt-1 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:divide-gray-600">
                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                                 @can('update',$comment)
                                     <li>

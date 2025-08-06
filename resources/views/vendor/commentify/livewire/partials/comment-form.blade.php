@@ -18,7 +18,7 @@
         @endif
         @csrf
         <div
-            class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700
+            class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200
              ">
             <label for="{{$inputId}}" class="sr-only">{{$inputLabel}}</label>
             <div x-data="{
@@ -37,7 +37,7 @@
     }">
         <textarea id="{{$inputId}}" rows="6"
                   class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none
-                              dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 @error($state.'.body')
+                              dark:placeholder-gray-400  @error($state.'.body')
                               border-red-500 @enderror"
                   placeholder="{{ __('commentify::commentify.comments.write_comment') }}"
                   wire:model.live="{{$state}}.body"
@@ -55,7 +55,7 @@
         </div>
 
 
-        <flux:button
+        <flux:button class="bg-white"
             variant="primary"
             wire:loading.attr="disabled"
             type="submit">
