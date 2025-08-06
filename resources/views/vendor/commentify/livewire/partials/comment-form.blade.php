@@ -55,7 +55,7 @@
         </div>
 
 
-        <flux:button class="bg-white"
+        <flux:button class="bg-green-400 hover:bg-white"
             variant="primary"
             wire:loading.attr="disabled"
             type="submit">
