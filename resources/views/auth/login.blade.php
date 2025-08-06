@@ -1,6 +1,6 @@
 <x-layout>
     @if (session('status'))
-        <p>{{ session('status') }}</p>
+        <p class="text-center mx-auto text-white bg-green-500 p-10 align-middle">{{ session('status') }}</p>
     @endif
 
 
