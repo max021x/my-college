@@ -4,7 +4,7 @@
     <section class="text-box">
         <h1>To Infinity & Beyond</h1>
         <p>
-            Be free to create posts and share your data with anybody
+            Be free to create posts and share your knowledge with anybody
         </p>
     </section>
 
