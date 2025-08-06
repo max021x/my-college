@@ -26,7 +26,7 @@
         <p class="text-gray-600 mb-4">{{ $post->user->name }}</p>
 
         <div class="prose max-w-none">
-            @if($full)
+        @if($full)
                 <p class="text-gray-700 mb-4">{{ $post->description }}</p>
                 <div class="markdown-content">
                     {!! $post->markdown !!}
