@@ -6,6 +6,7 @@
         </div>
     @endif
 
+    <div class="pb-10"></div>
     {{-- User Avatar --}}
     <div class="w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden border-2 border-[#004677]">
         @if ($avatar)

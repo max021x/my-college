@@ -138,7 +138,7 @@ class PostController extends Controller implements HasMiddleware
      */
     public function destroy(Post $post)
     {   
-        Gate::authorize('modigy' , $post) ; 
+        Gate::authorize('modify' , $post) ; 
 
         if ($post->cover) {
             Storage::disk('public')->delete($post->cover);
