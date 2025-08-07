@@ -17,6 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('verified')->name('user.dashboard');
 
+    Route::put('/dashboard' , [DashboardController::class , 'update'])->middleware('verified')->name('dashboard.update') ;   
+
+
     // verfication settings 
     Route::get('/email/verify', [RegisterController::class, 'verifyEmailNotice'])->name('verification.notice');
 

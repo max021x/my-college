@@ -9,8 +9,8 @@
     <div class="pb-10"></div>
     {{-- User Avatar --}}
     <div class="w-40 h-40 mx-auto mb-8 rounded-full overflow-hidden border-2 border-[#004677]">
-        @if ($avatar)
-            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $avatar) }}" alt="Profile Avatar">
+        @if ($user->avatar)
+            <img class="w-full h-full object-cover" src="{{ asset('storage/' . $user->avatar) }}" alt="">
         @else
             <div class="w-full h-full bg-gray-200 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,14 +20,26 @@
         @endif
     </div>
 
+    {{-- user name --}}
+    <div>
+        <p class="mb-5 text-center mx-auto">
+            {{$user->email}}
+        </p>
+        <p class="mb-5 text-center mx-auto">
+            {{$user->name}} 
+        </p>
+    </div>
+
     <div class="text-center mb-8">
         <a href="#posts" class="text-[#004677] font-medium hover:underline">Jump to Your Posts ↓</a>
     </div>
 
     {{-- Profile Update Form --}}
     <div class="max-w-2xl mx-auto mb-8">
-        <form class="border-2 border-gray-200 rounded-lg p-6" action="" enctype="multipart/form-data">
+        <form class="border-2 border-gray-200 rounded-lg p-6" action="{{route('dashboard.update')}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            
             <h1 class="text-xl font-bold text-[#004677] mb-4">Update Your Info</h1>
             
             <div class="space-y-4">
@@ -44,8 +56,8 @@
                 
                 {{-- Username --}}
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="username">Username:</label>
-                    <input type="text" name="username" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#004677] focus:border-[#004677]">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="name">Username:</label>
+                    <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#004677] focus:border-[#004677]">
                 </div>
                 
                 {{-- Email --}}

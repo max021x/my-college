@@ -4,16 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Post ;
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
-    public function index () {
-        $posts  = Auth::user()->posts()->latest()->paginate(6) ; 
-        $avatar = Auth::user()->avatar ; 
-        return view('user.dashboard' , ['posts' => $posts , 'avatar' => $avatar]) ; 
+    public function index()
+    {
+        $posts = Auth::user()->posts()->latest()->paginate(6);
+        $user = Auth::user();
+        return view('user.dashboard', ['posts' => $posts, 'user' => $user]);
     }
 
-    
+    public function update(Request $request)
+    {   
+        $user = Auth::user() ; 
 
+        $request->validate([
+            'name' => ['nullable', 'max:255', 'unique:users,name,'.$user->id],
+            'email' => ['nullable', 'email', 'max:255', 'unique:users,email,'.$user->id],
+            'avatar' => ['nullable', 'file', 'max:1024', 'mimes:png,jpg,jpeg']
+        ]);
+
+        $data = [
+            'name' => $request->name ?? $user->name,
+            'email' => $request->email ?? $user->email,
+        ];
+
+        // Handle avatar upload
+        $path = null ; 
+        if ($request->hasFile('avatar')) {
+            // Delete old avatar if it exists
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            
+            $path = Storage::disk('public')->put('my-college/avatar' , $request->avatar) ; 
+        }
+        else{
+            $path  = $user->avatar ; 
+        }   
+
+        $data['avatar'] = $path ; 
+
+        $user->update($data);
+
+        return redirect()->route('user.dashboard')->with('success', 'Your information has been updated');
+    }
 }
