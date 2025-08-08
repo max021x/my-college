@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
+use Illuminate\Validation\Rules\Password;
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,7 @@ class DashboardController extends Controller
 
         $request->validate([
             'name' => ['nullable', 'max:255', 'unique:users,name,' . $user->id],
-            'email' => ['nullable', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'email' => ['nullable', 'email:rfc,dns,spoof,filter', 'max:255', 'unique:users'],
             'avatar' => ['nullable', 'file', 'max:1024', 'mimes:png,jpg,jpeg']
         ]);
 
@@ -60,11 +61,13 @@ class DashboardController extends Controller
 
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
+            'new_password' => ['required', Password::default()],
             'new_confirm_password' => ['same:new_password'],
         ]);
 
-        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+        User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+
 
         return redirect()->route('user.dashboard')->with('success', "Password is Changed");
     }

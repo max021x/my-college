@@ -1,10 +1,22 @@
 <x-layout>
+
+    @if ($errors->any())
+        <div class="bg-red-600 text-white p-4 mb-6 rounded text-center">
+            @foreach ($errors->all() as $err )
+                {{$err}}
+            @endforeach
+        </div>
+    @endif
+
+
     {{-- Success/Delete Messages --}}
     @if (session('success') || session('delete'))
         <div class="bg-green-600 text-white p-4 mb-6 rounded text-center">
             {{ session('success') ?? session('delete') }}
         </div>
     @endif
+
+
 
     <div class="pb-10"></div>
     {{-- User Avatar --}}
@@ -82,7 +94,7 @@
 
     {{-- Password Update Form --}}
     <div class="max-w-2xl mx-auto mb-8">
-        <form class="border-2 border-gray-200 rounded-lg p-6" action="{{route('dashboard.change')}}" method="post">
+        <form class="border-2 border-gray-200 rounded-lg p-6" action="{{ route('dashboard.change') }}" method="post">
             @csrf
 
             <h1 class="text-xl font-bold text-[#004677] mb-4">Reset Your Password</h1>
@@ -95,7 +107,7 @@
                     <input type="password" name="current_password"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#004677] focus:border-[#004677]">
                     @error('current_password')
-                        <p>{{ $message }}</p>
+                        <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -105,7 +117,7 @@
                     <input type="password" name="new_password"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#004677] focus:border-[#004677]">
                     @error('new_password')
-                        <p>{{ $message }}</p>
+                        <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -116,7 +128,7 @@
                     <input type="password" name="new_confirm_password"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#004677] focus:border-[#004677]">
                     @error('new_confirm_password')
-                        <p>{{ $message }}</p>
+                        <p class="text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
 

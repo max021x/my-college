@@ -25,8 +25,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 'unique:users'],
-            'email' => ['required', 'unique:users' , /*'email:rfc,dns,spoof,filter', 'max:255', 'unique:users'*/],
-            'password' => ['required' , 'confirmed' , /*Password::default()*/],
+            'email' => ['required', 'unique:users' , 'email:rfc,dns,spoof,filter', 'max:255',],
+            'password' => ['required' , 'confirmed' , Password::default()],
             'birthdate' => ['required' , 'date'],
             'avatar' => ['nullable', 'file', 'max:1024', 'mimes:png,jpg']
         ];

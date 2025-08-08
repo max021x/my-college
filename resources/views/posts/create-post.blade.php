@@ -1,4 +1,13 @@
 <x-layout>
+
+    @if ($errors->any())
+        <div class="bg-red-600 text-white p-4 mb-6 rounded text-center">
+            @foreach ($errors->all() as $err)
+                {{ $err }}
+            @endforeach
+        </div>
+    @endif
+
     <section class="max-w-4xl mx-auto py-8 px-4 font-sans">
         @if (session('success'))
             <p class="bg-green-600 text-white p-4 mb-6 rounded-lg text-center font-medium shadow-md">
@@ -6,7 +15,8 @@
             </p>
         @endif
 
-        <form id="postform" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" class="space-y-6">
+        <form id="postform" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data"
+            class="space-y-6">
             @csrf
 
             <!-- Title Field -->
@@ -94,7 +104,7 @@
                 let markdownTextarea = () => document.querySelector('#markdown');
 
                 document.getElementById('postform').addEventListener('submit', function(event) {
-                    localStorage.removeItem('markdown'); 
+                    localStorage.removeItem('markdown');
                 });
 
                 let convert = () => {

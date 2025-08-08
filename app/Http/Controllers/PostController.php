@@ -71,7 +71,7 @@ class PostController extends Controller implements HasMiddleware
             ]
         );
 
-        return redirect()->route('user.dashboard')->with('success', 'Your post is Created');
+        return redirect()->route('user.dashboard' , ['#posts'])->with('success', 'Your post is Created');
     }
 
     /**
@@ -130,7 +130,7 @@ class PostController extends Controller implements HasMiddleware
             'cover' => $path
         ]);
 
-        return redirect()->route('user.dashboard')->with('success', 'Your post is Updated');
+        return redirect()->route('user.dashboard'  , ['#posts'])->with('success', 'Your post is Updated');
     }
 
     /**
