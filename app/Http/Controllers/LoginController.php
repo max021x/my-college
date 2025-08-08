@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Expr\FuncCall;
 
 class LoginController extends Controller
@@ -41,7 +42,10 @@ class LoginController extends Controller
     }
 
     public function deleteAccount(Request $request)
-    {
+    {   
+        if($request->user()->avatar){
+            Storage::disk('public')->delete($request->user()->avatar) ; 
+        }
         $request->user()->delete();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
